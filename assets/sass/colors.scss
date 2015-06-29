@@ -1,5 +1,5 @@
-@mixin generate-color($color) {
-  .text-#{color} { color: $color !important; }
+@mixin generate-color($selector, $color) {
+  .text-#{selector} { color: $color !important; }
 
-  .background-#{color} { background-color: $color !important; }
+  .background-#{selector} { background-color: $color !important; }
 }
