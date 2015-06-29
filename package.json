@@ -1,0 +1,21 @@
+{
+  "name": "mixin-styles",
+  "version": "0.0.1",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@scm.bytefactory.fr:2222/bower/mixin-styles.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-less": "^3.0.3",
+    "gulp-release-tasks": "0.0.3",
+    "gulp-rimraf": "^0.1.1",
+    "gulp-sass": "^2.0.3"
+  }
+}
