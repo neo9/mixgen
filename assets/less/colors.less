@@ -1,5 +1,7 @@
-.generate-color(@name, @color) {
-	.text-@{name} { color: @color !important; }
+.generate-color(@selector, @color) {
+	@name: ~'@selector';
 
-	.background-@{name} { background-color: @color !important; }
+	.text-@{selector} { color: @color !important; }
+
+	.background-@{selector} { background-color: @color !important; }
 }
