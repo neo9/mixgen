@@ -1,26 +1,62 @@
+.generate-margins-screens(@class, @size) {
+  //@media(min-width: @screen-xs-min) {
+  //  &-xs {
+  //    margin@{class}: @size !important;
+  //  }
+  //}
+
+  @media(min-width: @screen-sm-min) {
+    &-sm {
+      margin@{class}: @size !important;
+    }
+  }
+
+  @media(min-width: @screen-md-min) {
+    &-md {
+      margin@{class}: @size !important;
+    }
+  }
+
+  @media(min-width: @screen-lg-min) {
+    &-lg {
+      margin@{class}: @size !important;
+    }
+  }
+}
+
+.generate-margin(@class, @xs, @sm, @md, @lg) {
+  .margin@{class} {
+    &-xs {
+      margin@{class}: @xs !important;
+      .generate-margins-screens(@class, @xs);
+    }
+
+    &-sm {
+      margin@{class}: @sm !important;
+      .generate-margins-screens(@class, @sm);
+    }
+
+    &-md {
+      margin@{class}: @md !important;
+      .generate-margins-screens(@class, @md);
+    }
+
+    &-lg {
+      margin@{class}: @lg !important;
+      .generate-margins-screens(@class, @lg);
+    }
+
+    &-none {
+      margin@{class}: 0 !important;
+      .generate-margins-screens(@class, 0);
+    }
+  }
+}
+
 .generate-margins(@xs, @sm, @md, @lg) {
-  .margin-xs { margin: @xs !important; }
-  .margin-sm { margin: @sm !important; }
-  .margin-md { margin: @md !important; }
-  .margin-lg { margin: @lg !important; }
-
-  .margin-top-xs { margin-top: @xs !important; }
-  .margin-top-sm { margin-top: @sm !important; }
-  .margin-top-md { margin-top: @md !important; }
-  .margin-top-lg { margin-top: @lg !important; }
-
-  .margin-right-xs { margin-right: @xs !important; }
-  .margin-right-sm { margin-right: @sm !important; }
-  .margin-right-md { margin-right: @md !important; }
-  .margin-right-lg { margin-right: @lg !important; }
-
-  .margin-bottom-xs { margin-bottom: @xs !important; }
-  .margin-bottom-sm { margin-bottom: @sm !important; }
-  .margin-bottom-md { margin-bottom: @md !important; }
-  .margin-bottom-lg { margin-bottom: @lg !important; }
-
-  .margin-left-xs { margin-left: @xs !important; }
-  .margin-left-sm { margin-left: @sm !important; }
-  .margin-left-md { margin-left: @md !important; }
-  .margin-left-lg { margin-left: @lg !important; }
+  .generate-margin(~'', @xs, @sm, @md, @lg);
+  .generate-margin(~'-top', @xs, @sm, @md, @lg);
+  .generate-margin(~'-right', @xs, @sm, @md, @lg);
+  .generate-margin(~'-bottom', @xs, @sm, @md, @lg);
+  .generate-margin(~'-left', @xs, @sm, @md, @lg);
 }

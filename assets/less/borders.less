@@ -1,0 +1,27 @@
+.generate-border(@selector, @position, @color, @xs, @sm, @md, @lg) {
+	.border-@{selector}@{position} {
+		&-xs {
+			border@{position}: @xs solid @color !important;
+		}
+
+		&-sm {
+			border@{position}: @sm solid @color !important;
+		}
+
+		&-md {
+			border@{position}: @md solid @color !important;
+		}
+
+		&-lg {
+			border@{position}: @lg solid @color !important;
+		}
+	}
+}
+
+.generate-borders(@selector, @color, @xs, @sm, @md, @lg) {
+	.generate-border(@selector, ~'', @color, @xs, @sm, @md, @lg);
+	.generate-border(@selector, ~'-top', @color, @xs, @sm, @md, @lg);
+	.generate-border(@selector, ~'-right', @color, @xs, @sm, @md, @lg);
+	.generate-border(@selector, ~'-bottom', @color, @xs, @sm, @md, @lg);
+	.generate-border(@selector, ~'-left', @color, @xs, @sm, @md, @lg);
+}
