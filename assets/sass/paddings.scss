@@ -1,26 +1,62 @@
+@mixin generate-paddings-screens($class, $size) {
+  //@media(min-width: $screen-xs-min) {
+  //  &-xs {
+  //    padding#{class}: $size !important;
+  //  }
+  //}
+
+  @media(min-width: $screen-sm-min) {
+    &-sm {
+      padding#{class}: $size !important;
+    }
+  }
+
+  @media(min-width: $screen-md-min) {
+    &-md {
+      padding#{class}: $size !important;
+    }
+  }
+
+  @media(min-width: $screen-lg-min) {
+    &-lg {
+      padding#{class}: $size !important;
+    }
+  }
+}
+
+@mixin generate-padding($class, $xs, $sm, $md, $lg) {
+  .padding#{class} {
+    &-xs {
+      padding#{class}: $xs !important;
+      @include generate-paddings-screens($class, $xs);
+    }
+
+    &-sm {
+      padding#{class}: $sm !important;
+      @include generate-paddings-screens($class, $sm);
+    }
+
+    &-md {
+      padding#{class}: $md !important;
+      @include generate-paddings-screens($class, $md);
+    }
+
+    &-lg {
+      padding#{class}: $lg !important;
+      @include generate-paddings-screens($class, $lg);
+    }
+
+    &-none {
+      padding#{class}: 0 !important;
+      @include generate-paddings-screens($class, 0);
+    }
+  }
+}
+
 @mixin generate-paddings($xs, $sm, $md, $lg) {
-  .padding-xs { padding: $xs !important; }
-  .padding-sm { padding: $sm !important; }
-  .padding-md { padding: $md !important; }
-  .padding-lg { padding: $lg !important; }
-
-  .padding-top-xs { padding-top: $xs !important; }
-  .padding-top-sm { padding-top: $sm !important; }
-  .padding-top-md { padding-top: $md !important; }
-  .padding-top-lg { padding-top: $lg !important; }
-
-  .padding-right-xs { padding-right: $xs !important; }
-  .padding-right-sm { padding-right: $sm !important; }
-  .padding-right-md { padding-right: $md !important; }
-  .padding-right-lg { padding-right: $lg !important; }
-
-  .padding-bottom-xs { padding-bottom: $xs !important; }
-  .padding-bottom-sm { padding-bottom: $sm !important; }
-  .padding-bottom-md { padding-bottom: $md !important; }
-  .padding-bottom-lg { padding-bottom: $lg !important; }
-
-  .padding-left-xs { padding-left: $xs !important; }
-  .padding-left-sm { padding-left: $sm !important; }
-  .padding-left-md { padding-left: $md !important; }
-  .padding-left-lg { padding-left: $lg !important; }
+  @include generate-padding('', $xs, $sm, $md, $lg);
+  @include generate-padding('-top', $xs, $sm, $md, $lg);
+  @include generate-padding('-right', $xs, $sm, $md, $lg);
+  @include generate-padding('-bottom', $xs, $sm, $md, $lg);
+  @include generate-padding('-left', $xs, $sm, $md, $lg);
 }
