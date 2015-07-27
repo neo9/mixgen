@@ -7,61 +7,61 @@
 
   @media(min-width: $screen-sm-min) {
     &-sm {
-      margin#{class}: $size !important;
+      margin#{$class}: $size !important;
     }
   }
 
   @media(min-width: $screen-md-min) {
     &-md {
-      margin#{class}: $size !important;
+      margin#{$class}: $size !important;
     }
   }
 
   @media(min-width: $screen-lg-min) {
     &-lg {
-      margin#{class}: $size !important;
+      margin#{$class}: $size !important;
     }
   }
 }
 
 @mixin generate-margin($class, $xs, $sm, $md, $lg) {
-  .margin#{class} {
+  .margin#{$class} {
     &-xs {
-      margin#{class}: $xs !important;
+      margin#{$class}: $xs !important;
       @include generate-margins-screens($class, $xs);
     }
 
     &-sm {
-      margin#{class}: $sm !important;
+      margin#{$class}: $sm !important;
       @include generate-margins-screens($class, $sm);
     }
 
     &-md {
-      margin#{class}: $md !important;
+      margin#{$class}: $md !important;
       @include generate-margins-screens($class, $md);
     }
 
     &-lg {
-      margin#{class}: $lg !important;
+      margin#{$class}: $lg !important;
       @include generate-margins-screens($class, $lg);
     }
 
     &-none {
-      margin#{class}: 0 !important;
+      margin#{$class}: 0 !important;
       @include generate-margins-screens($class, 0);
     }
 
     &-auto {
-      margin#{class}: auto !important;
+      margin#{$class}: auto !important;
       @include generate-margins-screens($class, 0);
     }
   }
 }
 
 @mixin generate-margins($xs, $sm, $md, $lg) {
-  @include generate-margin('', $xs, $sm, $md, $lg);
-  @include generate-margin('-top', $xs, $sm, $md, $lg);
-  @include generate-margin('-right', $xs, $sm, $md, $lg);
-  @include generate-margin('-bottom', $xs, $sm, $md, $lg);
-  @include generate-margin('-left', $xs, $sm, $md, $lg);
+  @include generate-margin("", $xs, $sm, $md, $lg);
+  @include generate-margin("-top", $xs, $sm, $md, $lg);
+  @include generate-margin("-right", $xs, $sm, $md, $lg);
+  @include generate-margin("-bottom", $xs, $sm, $md, $lg);
+  @include generate-margin("-left", $xs, $sm, $md, $lg);
 }

@@ -1,5 +1,5 @@
 @mixin generate-pull($side) {
-	.pull-#{side} {
+	.pull-#{$side} {
 		@media(min-width: $screen-xs-min) {
 			&-xs {
 				float: left !important;
