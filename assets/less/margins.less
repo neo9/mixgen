@@ -24,44 +24,49 @@
   }
 }
 
-.generate-margin(@class, @xs, @sm, @md, @lg) {
+.generate-margin(@class, @xs, @sm, @md, @lg, @mobile) {
+
+  .screen(@class, @size) when not (@mobile) {
+    .generate-margins-screens(@class, @size);
+  }
+
   .margin@{class} {
     &-xs {
       margin@{class}: @xs !important;
-      .generate-margins-screens(@class, @xs);
+      .screen(@class, @xs);
     }
 
     &-sm {
       margin@{class}: @sm !important;
-      .generate-margins-screens(@class, @sm);
+      .screen(@class, @sm);
     }
 
     &-md {
       margin@{class}: @md !important;
-      .generate-margins-screens(@class, @md);
+      .screen(@class, @md);
     }
 
     &-lg {
       margin@{class}: @lg !important;
-      .generate-margins-screens(@class, @lg);
+      .screen(@class, @lg);
     }
 
     &-none {
       margin@{class}: 0 !important;
-      .generate-margins-screens(@class, 0);
+      .screen(@class, 0);
     }
 
     &-auto {
       margin@{class}: auto !important;
-      .generate-margins-screens(@class, 0);
+      .screen(@class, 0);
     }
   }
 }
 
-.generate-margins(@xs, @sm, @md, @lg) {
-  .generate-margin(~'', @xs, @sm, @md, @lg);
-  .generate-margin(~'-top', @xs, @sm, @md, @lg);
-  .generate-margin(~'-right', @xs, @sm, @md, @lg);
-  .generate-margin(~'-bottom', @xs, @sm, @md, @lg);
-  .generate-margin(~'-left', @xs, @sm, @md, @lg);
+.generate-margins(@xs, @sm, @md, @lg, @mobile:false) {
+  .generate-margin(~'', @xs, @sm, @md, @lg, @mobile);
+  .generate-margin(~'-top', @xs, @sm, @md, @lg, @mobile);
+  .generate-margin(~'-right', @xs, @sm, @md, @lg, @mobile);
+  .generate-margin(~'-bottom', @xs, @sm, @md, @lg, @mobile);
+  .generate-margin(~'-left', @xs, @sm, @md, @lg, @mobile);
 }

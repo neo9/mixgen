@@ -24,39 +24,44 @@
   }
 }
 
-.generate-padding(@class, @xs, @sm, @md, @lg) {
+.generate-padding(@class, @xs, @sm, @md, @lg, @mobile) {
+
+  .screen(@class, @size) when not (@mobile) {
+    .generate-paddings-screens(@class, @size);
+  }
+
   .padding@{class} {
     &-xs {
       padding@{class}: @xs !important;
-      .generate-paddings-screens(@class, @xs);
+      .screen(@class, @xs);
     }
 
     &-sm {
       padding@{class}: @sm !important;
-      .generate-paddings-screens(@class, @sm);
+      .screen(@class, @sm);
     }
 
     &-md {
       padding@{class}: @md !important;
-      .generate-paddings-screens(@class, @md);
+      .screen(@class, @md);
     }
 
     &-lg {
       padding@{class}: @lg !important;
-      .generate-paddings-screens(@class, @lg);
+      .screen(@class, @lg);
     }
 
     &-none {
       padding@{class}: 0 !important;
-      .generate-paddings-screens(@class, 0);
+      .screen(@class, 0);
     }
   }
 }
 
-.generate-paddings(@xs, @sm, @md, @lg) {
-  .generate-padding(~'', @xs, @sm, @md, @lg);
-  .generate-padding(~'-top', @xs, @sm, @md, @lg);
-  .generate-padding(~'-right', @xs, @sm, @md, @lg);
-  .generate-padding(~'-bottom', @xs, @sm, @md, @lg);
-  .generate-padding(~'-left', @xs, @sm, @md, @lg);
+.generate-paddings(@xs, @sm, @md, @lg, @mobile:false) {
+  .generate-padding(~'', @xs, @sm, @md, @lg, @mobile);
+  .generate-padding(~'-top', @xs, @sm, @md, @lg, @mobile);
+  .generate-padding(~'-right', @xs, @sm, @md, @lg, @mobile);
+  .generate-padding(~'-bottom', @xs, @sm, @md, @lg, @mobile);
+  .generate-padding(~'-left', @xs, @sm, @md, @lg, @mobile);
 }
