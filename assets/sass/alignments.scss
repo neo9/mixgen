@@ -1,27 +1,32 @@
-@mixin generate-pull($side) {
-	.pull-#{$side} {
+@mixin generate-pull($side, $mobile:false) {
+  	.pull-#{$side} {
+	  float: $side !important
+	}
+  	@if $mobile == false {
+	  .pull-#{$side} {
 		@media(min-width: $screen-xs-min) {
-			&-xs {
-				float: left !important;
-			}
+		  &-xs {
+			float: #{$side} !important;
+		  }
 		}
 
 		@media(min-width: $screen-sm-max) {
-			&-sm {
-				float: left !important;
-			}
+		  &-sm {
+			float: #{$side} !important;
+		  }
 		}
 
 		@media(min-width: $screen-md-min) {
-			&-md {
-				float: left !important;
-			}
+		  &-md {
+			float: #{$side} !important;
+		  }
 		}
 
 		@media(min-width: $screen-lg-min) {
-			&-lg {
-				float: left !important;
-			}
+		  &-lg {
+			float: #{$side} !important;
+		  }
 		}
+	  }
 	}
 }

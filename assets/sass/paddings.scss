@@ -28,42 +28,42 @@
   .padding#{$class} {
     &-xs {
       padding#{$class}: $xs !important;
-      @if $mobile != 'true' {
+      @if $mobile == false {
         @include generate-paddings-screens($class, $xs);
       }
     }
 
     &-sm {
       padding#{$class}: $sm !important;
-      @if $mobile != 'true' {
+      @if $mobile == false {
         @include generate-paddings-screens($class, $sm);
       }
     }
 
     &-md {
       padding#{$class}: $md !important;
-      @if $mobile != 'true' {
+      @if $mobile == false {
         @include generate-paddings-screens($class, $md);
       }
     }
 
     &-lg {
       padding#{$class}: $lg !important;
-      @if $mobile != 'true' {
+      @if $mobile == false {
         @include generate-paddings-screens($class, $lg);
       }
     }
 
     &-none {
       padding#{$class}: 0 !important;
-      @if $mobile != 'true' {
+      @if $mobile == false {
         @include generate-paddings-screens($class, 0);
       }
     }
   }
 }
 
-@mixin generate-paddings($xs, $sm, $md, $lg, $mobile:'false') {
+@mixin generate-paddings($xs, $sm, $md, $lg, $mobile:false) {
   @include generate-padding("", $xs, $sm, $md, $lg, $mobile);
   @include generate-padding("-top", $xs, $sm, $md, $lg, $mobile);
   @include generate-padding("-right", $xs, $sm, $md, $lg, $mobile);
