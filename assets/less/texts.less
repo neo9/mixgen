@@ -6,7 +6,7 @@
 }
 
 .text-align(@side, @mobile:false) {
-
+	
 	.text-@{side} when not (@mobile) {
 		@media (min-width: @screen-sm-min) {
 			&-sm {
@@ -30,4 +30,8 @@
 	.text-align-@{side} {
 		text-align: @side !important;
 	}
+}
+
+.generate-text(@size) {
+	.text-@{size} { font-size: ~"@{size}px" !important; }
 }
