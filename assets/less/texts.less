@@ -35,3 +35,13 @@
 .generate-text(@size) {
 	.text-@{size} { font-size: ~"@{size}px" !important; }
 }
+
+.text-underline { text-decoration: underline !important; }
+
+.text-bold { font-weight: bold !important; }
+
+.text-ellipsis {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
