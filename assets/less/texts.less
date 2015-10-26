@@ -6,7 +6,7 @@
 }
 
 .text-align(@side, @mobile:false) {
-	
+
 	.text-@{side} when not (@mobile) {
 		@media (min-width: @screen-sm-min) {
 			&-sm {
@@ -44,4 +44,8 @@
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+
+.text-strikethrough {
+	text-decoration: line-through !important;
 }
