@@ -31,3 +31,15 @@
     }
   }
 }
+
+@mixin generate-text($size) {
+  .text-#{$size} { font-size: $size !important; }
+}
+
+.text-underline { text-decoration: underline !important; }
+
+.text-bold { font-weight: bold !important; }
+
+.text-strikethrough {
+  text-decoration: line-through !important;
+}
