@@ -1,6 +1,5 @@
 var gulp = require('gulp');
-var rimraf = require('gulp-rimraf');
-var concat = require('gulp-concat');
+var del = require('del');
 var less = require('gulp-less');
 var sass = require('gulp-sass');
 
@@ -35,8 +34,10 @@ gulp.task('sass', [], function () {
 		.pipe(gulp.dest(dist + '/sass'));
 });
 
-gulp.task('clean', [], function () {
-	return gulp.src(dist, { read: false }).pipe(rimraf({ force: true }));
+gulp.task('clean', function () {
+	return del([
+		dist
+	]);
 });
 
 gulp.task('watch', [], function () {
