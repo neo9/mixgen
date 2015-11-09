@@ -33,7 +33,7 @@
 }
 
 @mixin generate-text($size) {
-  .text-#{$size} { font-size: $size !important; }
+  .text-#{$size} { font-size: #{$size}px !important; }
 }
 
 .text-underline { text-decoration: underline !important; }
