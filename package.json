@@ -10,7 +10,7 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "del": "^2.0.2",
     "gulp": "^3.9.0",
     "gulp-less": "^3.0.3",
