@@ -1,0 +1,41 @@
+$sides: left right;
+
+@mixin generate-float($side) {
+		.pull-#{$side} {
+				float: $side !important;
+		}
+}
+
+@mixin generate-float-media($side) {
+		.pull-#{$side} {
+				@media (min-width: $screen-sm-min) {
+						&-sm {
+								float: $side !important;
+						}
+				}
+
+				@media (min-width: $screen-md-min) {
+						&-md {
+								float: $side !important;
+						}
+				}
+
+				@media (min-width: $screen-lg-min) {
+						&-lg {
+								float: $side !important;
+						}
+				}
+		}
+}
+
+@mixin float($mobile:false) {
+		@each $side in $sides {
+				@include generate-float($side);
+		}
+
+		@if $mobile == false {
+				@each $side in $sides {
+						@include generate-float-media($side);
+				}
+		}
+}

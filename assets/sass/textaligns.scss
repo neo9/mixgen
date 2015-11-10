@@ -1,0 +1,41 @@
+$sides: left right center;
+
+@mixin generate-text-align($side) {
+		.text-#{$side} {
+				text-align: $side !important;
+		}
+}
+
+@mixin generate-text-align-media($side) {
+		.text-#{$side} {
+				@media (min-width: $screen-sm-min) {
+						&-sm {
+								text-align: $side !important;
+						}
+				}
+
+				@media (min-width: $screen-md-min) {
+						&-md {
+								text-align: $side !important;
+						}
+				}
+
+				@media (min-width: $screen-lg-min) {
+						&-lg {
+								text-align: $side !important;
+						}
+				}
+		}
+}
+
+@mixin text-aligns($mobile:false) {
+		@each $side in $sides {
+				@include generate-text-align($side);
+		}
+
+		@if $mobile == false {
+				@each $side in $sides {
+						@include generate-text-align-media($side);
+				}
+		}
+}
