@@ -1,5 +1,9 @@
 .generate-border(@selector, @position, @color, @xs, @sm, @md, @lg) {
 	.border-@{selector}@{position} {
+		&-none {
+			border@{position}: 0 !important;
+		}
+
 		&-xs {
 			border@{position}: @xs solid @color !important;
 		}
