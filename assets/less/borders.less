@@ -1,31 +1,59 @@
-.generate-border(@selector, @position, @color, @xs, @sm, @md, @lg) {
-	.border-@{selector}@{position} {
-		&-none {
-			border@{position}: 0 !important;
-		}
+.generate-border(@position, @screen-name, @screen-size) {
+	.border@{position}-@{selector} {
+		@media(min-width: @screen-size) {
+			&-xs {
+				&@{screen-name} {
+					border@{position}: @xs solid @color !important;
+				}
+			}
 
-		&-xs {
-			border@{position}: @xs solid @color !important;
-		}
+			&-sm {
+				&@{screen-name} {
+					border@{position}: @sm solid @color !important;
+				}
+			}
 
-		&-sm {
-			border@{position}: @sm solid @color !important;
-		}
+			&-md {
+				&@{screen-name} {
+					border@{position}: @md solid @color !important;
+				}
+			}
 
-		&-md {
-			border@{position}: @md solid @color !important;
-		}
+			&-lg {
+				&@{screen-name} {
+					border@{position}: @lg solid @color !important;
+				}
+			}
 
-		&-lg {
-			border@{position}: @lg solid @color !important;
+			&-none {
+				&@{screen-name} {
+					border@{position}: none;
+				}
+			}
 		}
 	}
 }
 
-.generate-borders(@selector, @color, @xs, @sm, @md, @lg) {
-	.generate-border(@selector, ~'', @color, @xs, @sm, @md, @lg);
-	.generate-border(@selector, ~'-top', @color, @xs, @sm, @md, @lg);
-	.generate-border(@selector, ~'-right', @color, @xs, @sm, @md, @lg);
-	.generate-border(@selector, ~'-bottom', @color, @xs, @sm, @md, @lg);
-	.generate-border(@selector, ~'-left', @color, @xs, @sm, @md, @lg);
+.generate-borders(@selector, @color, @xs:5, @sm:10, @md:15, @lg:20, @disable-screen:false, @screen-xs:0, @screen-sm:@screen-sm, @screen-md:@screen-md, @screen-lg:@screen-lg) {
+	.init(@position, @screen-name, @screen-size) when not (@disable-screen) {
+		.generate-border(@position, @screen-name, @screen-size);
+	}
+
+	.init(@position, @screen-name, @screen-size) when (@disable-screen) {
+		.generate-border(@position, ~'', 0);
+	}
+
+	.generate-borders-with-side(@class) {
+		.init(@class, ~'', 0);
+		.init(@class, ~'-xs', @screen-xs);
+		.init(@class, ~'-sm', @screen-sm);
+		.init(@class, ~'-md', @screen-md);
+		.init(@class, ~'-lg', @screen-lg);
+	}
+
+	.generate-borders-with-side(~'');
+	.generate-borders-with-side(~'-top');
+	.generate-borders-with-side(~'-right');
+	.generate-borders-with-side(~'-bottom');
+	.generate-borders-with-side(~'-left');
 }
