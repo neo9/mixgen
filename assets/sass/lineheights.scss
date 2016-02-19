@@ -1,3 +1,10 @@
-@mixin generate-lineheight($size) {
-	lineheight-#{$size} { line-height: ($size / 10) !important; }
+@import "generic-generator";
+
+$default-line-heights-sizes: ('xs': $line-height-xs-size, 'sm': $line-height-sm-size, 'md': $line-height-md-size, 'lg': $line-height-lg-size);
+
+//Mixin to generate line-height
+@mixin generate-line-height($sizes: $default-line-heights-sizes, $breakpoints: $grid-breakpoints) {
+	@each $key, $value in $sizes {
+		@include css-generator('line-height', line-height, ($key: $value), $breakpoints);
+	}
 }

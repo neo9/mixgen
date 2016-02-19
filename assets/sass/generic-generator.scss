@@ -1,0 +1,59 @@
+@import "breakpoints-utils";
+
+@function generateClassName($map, $separator: '-') {
+	$className: '';
+	$i: 0;
+
+	//if we have only one element the argument will be a map
+	@if (type_of($map) == 'map') {
+		$className: $className#{map-keys($map)}#{$separator};
+	}
+
+	@if (type_of($map) == 'list') {
+		@each $key, $value in $map {
+			@if (type_of($key) == 'map') {
+				$className: $className#{map-keys($key)}#{$separator};
+			}
+			$i: $i + 1;
+		}
+	}
+
+	@return str-slice(inspect($className), 1, str-length($className) - 1);
+}
+
+@function generateValueName($map) {
+	$values: ();
+
+	//if we have only one element the argument will be a map
+	@if (type_of($map) == 'map') {
+		$values: join($values, map-values($map), space);
+	}
+
+	@if (type_of($map) == 'list') {
+		@each $key, $value in $map {
+			@if (type_of($key) == 'map') {
+				$values: join($values, map-values($key), space);
+			} @else if ($key != '') {
+				$values: join($values, $key, space);
+			}
+		}
+	}
+
+	@return $values;
+}
+
+@mixin css-generator($className, $cssProperty, $values, $breakpoints) {
+	@if $breakpoints {
+		@each $breakpoint in map-keys($breakpoints) {
+			@include media-breakpoint-up($breakpoint) {
+				.#{$className}-#{generateClassName($values)}-#{$breakpoint} {
+					#{$cssProperty}: inspect(generateValueName($values)) !important;
+				}
+			}
+		}
+	} @else {
+		.#{$className}-#{generateClassName($values)} {
+			#{$cssProperty}: inspect(generateValueName($values)) !important;
+		}
+	}
+}

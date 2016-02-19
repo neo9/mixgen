@@ -1,0 +1,47 @@
+//Default border sizes
+$border-xs-size: 1px;
+$border-sm-size: 2px;
+$border-md-size: 3px;
+$border-lg-size: 4px;
+
+//Default margin sizes
+$margin-xs-size: 5px;
+$margin-sm-size: 10px;
+$margin-md-size: 15px;
+$margin-lg-size: 20px;
+$default-margins-sides: top, right, bottom, left;
+
+//Default padding sizes
+$padding-xs-size: 5px;
+$padding-sm-size: 10px;
+$padding-md-size: 15px;
+$padding-lg-size: 20px;
+
+//Default text size
+$text-xs-size: 10px;
+$text-sm-size: 15px;
+$text-md-size: 20px;
+$text-lg-size: 25px;
+
+//Default line-height
+$line-height-xs-size: $text-xs-size / 10;
+$line-height-sm-size: $text-sm-size / 10;
+$line-height-md-size: $text-md-size / 10;
+$line-height-lg-size: $text-lg-size / 10;
+
+//Default text align
+$default-text-align-sides: left, center, right;
+
+//Default grid breakpoints
+$grid-breakpoints: (
+	// Extra small screen / phone
+	xs: 0,
+	// Small screen / phone
+	sm: 544px,
+	// Medium screen / tablet
+	md: 768px,
+	// Large screen / desktop
+	lg: 992px,
+	// Extra large screen / wide desktop
+	xl: 1200px
+) !default;

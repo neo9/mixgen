@@ -1,0 +1,9 @@
+@import "generic-generator";
+
+//Mixin to generate text alignment
+@mixin generate-text-align($sides: $default-text-align-sides, $breakpoints: $grid-breakpoints) {
+	//We generate for each sides
+	@each $side in $sides {
+		@include css-generator('text', text-align, ($side: $side), $breakpoints);
+	}
+}

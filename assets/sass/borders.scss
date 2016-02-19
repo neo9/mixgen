@@ -1,30 +1,13 @@
-@mixin generate-border($selector, $position, $color, $xs, $sm, $md, $lg) {
-  .border-#{$selector}#{$position} {
-  	&-none {
-		border#{$position}: 0 !important;
-	}
-	&-xs {
-	  border#{$position}: $xs solid $color !important;
-	}
+@import "generic-generator";
 
-	&-sm {
-	  border#{$position}: $sm solid $color !important;
+//Mixin to generate borders
+@mixin generate-borders($color, $values: ('xs': $border-xs-size, 'sm': $border-sm-size, 'md': $border-md-size, 'lg': $border-lg-size), $type: solid, $breakpoints: $grid-breakpoints) {
+	@each $key, $value in $values {
+		//We generate without sides
+		@include css-generator('border', border, (join(join(($key: $value), $type), $color, comma)), $breakpoints);
+		//We generate for each sides
+		@each $side in top, right, bottom, left {
+			@include css-generator(inspect('border-' + $side), border-#{$side}, (join(join(($key: $value), $type), $color, comma)), $breakpoints);
+		}
 	}
-
-	&-md {
-	  border#{$position}: $md solid $color !important;
-	}
-
-	&-lg {
-	  border#{$position}: $lg solid $color !important;
-	}
-  }
-}
-
-@mixin generate-borders($selector, $color, $xs, $sm, $md, $lg) {
-  @include generate-border($selector, "", $color, $xs, $sm, $md, $lg);
-  @include generate-border($selector, "-top", $color, $xs, $sm, $md, $lg);
-  @include generate-border($selector, "-right", $color, $xs, $sm, $md, $lg);
-  @include generate-border($selector, "-bottom", $color, $xs, $sm, $md, $lg);
-  @include generate-border($selector, "-left", $color, $xs, $sm, $md, $lg);
 }

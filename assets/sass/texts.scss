@@ -1,12 +1,13 @@
-@mixin generate-texts($xs, $sm, $md, $lg) {
-		.text-xs { font-size: $xs !important; }
-		.text-sm { font-size: $sm !important; }
-		.text-md { font-size: $md !important; }
-		.text-lg { font-size: $lg !important; }
-}
+@import "generic-generator";
 
-@mixin generate-text($size) {
-		.text-#{$size} { font-size: #{$size}px !important; }
+$default-texts-sizes: ('xs': $text-xs-size, 'sm': $text-sm-size, 'md': $text-md-size, 'lg': $text-lg-size);
+
+//Mixin to generate text css font size
+@mixin generate-texts($sizes: $default-texts-sizes, $breakpoints: $grid-breakpoints) {
+	@each $key, $value in $sizes {
+		//We generate without sides
+		@include css-generator('text', font-size, ($key: $value), $breakpoints);
+	}
 }
 
 .text-bold { font-weight: bold !important; }

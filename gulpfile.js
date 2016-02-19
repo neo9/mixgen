@@ -11,9 +11,6 @@ var assets = 'assets';
 var paths = {
 	less: [
 		assets + '/less/commons.less'
-	],
-	sass: [
-		assets + '/sass/commons.scss'
 	]
 };
 
@@ -28,11 +25,11 @@ gulp.task('less', [], function () {
 		.pipe(gulp.dest(dist + '/less'));
 });
 
-gulp.task('sass', [], function () {
-	gulp.src(paths.sass)
-		.pipe(sass().on('error', handleError))
-		.pipe(gulp.dest(dist + '/sass'));
-});
+//gulp.task('sass', [], function () {
+//	gulp.src(paths.sass)
+//		.pipe(sass().on('error', handleError))
+//		.pipe(gulp.dest(dist + '/sass'));
+//});
 
 gulp.task('clean', function () {
 	return del([
@@ -45,13 +42,12 @@ gulp.task('watch', [], function () {
 		gulp.watch(paths.less, [ 'less' ]),
 		gulp.watch(paths.scss, [ 'sass' ])
 	].forEach(function (watch) {
-			watch.on('change', function (event) {
-				console.log('File %s was %s, running tasks...', event.path, event.type);
-			});
+		watch.on('change', function (event) {
+			console.log('File %s was %s, running tasks...', event.path, event.type);
 		});
+	});
 });
 
 gulp.task('default', [
-	'less',
-	'sass'
+	'less'
 ]);

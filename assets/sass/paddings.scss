@@ -1,72 +1,22 @@
-@mixin generate-paddings-screens($class, $size) {
-  //@media(min-width: $screen-xs-min) {
-  //  &-xs {
-  //    padding#{class}: $size !important;
-  //  }
-  //}
+@import "generic-generator";
 
-  @media(min-width: $screen-sm-min) {
-    &-sm {
-      padding#{$class}: $size !important;
-    }
-  }
+$default-paddings-sizes: ('xs': $padding-xs-size, 'sm': $padding-sm-size, 'md': $padding-md-size, 'lg': $padding-lg-size);
+$default-paddings-sides: top, right, bottom, left;
 
-  @media(min-width: $screen-md-min) {
-    &-md {
-      padding#{$class}: $size !important;
-    }
-  }
+//Mixin to generate paddings css classes
+//ex: generate-paddings($sizes: (12px: '12'), $sides: top, $breakpoint: (md: 120px)); for specific padding using specific breakpoints
+//ex: generate-paddings(); for default paddings ($padding-xs-size, $padding-sm-size, $padding-md-size, $padding-lg-size)
+//ex: generate-paddings($breakpoints: null); if you don't need breakpoint
 
-  @media(min-width: $screen-lg-min) {
-    &-lg {
-      padding#{$class}: $size !important;
-    }
-  }
-}
-
-@mixin generate-padding($class, $xs, $sm, $md, $lg, $mobile) {
-  .padding#{$class} {
-    &-xs {
-      padding#{$class}: $xs !important;
-      @if $mobile == false {
-        @include generate-paddings-screens($class, $xs);
-      }
-    }
-
-    &-sm {
-      padding#{$class}: $sm !important;
-      @if $mobile == false {
-        @include generate-paddings-screens($class, $sm);
-      }
-    }
-
-    &-md {
-      padding#{$class}: $md !important;
-      @if $mobile == false {
-        @include generate-paddings-screens($class, $md);
-      }
-    }
-
-    &-lg {
-      padding#{$class}: $lg !important;
-      @if $mobile == false {
-        @include generate-paddings-screens($class, $lg);
-      }
-    }
-
-    &-none {
-      padding#{$class}: 0 !important;
-      @if $mobile == false {
-        @include generate-paddings-screens($class, 0);
-      }
-    }
-  }
-}
-
-@mixin generate-paddings($xs, $sm, $md, $lg, $mobile:false) {
-  @include generate-padding("", $xs, $sm, $md, $lg, $mobile);
-  @include generate-padding("-top", $xs, $sm, $md, $lg, $mobile);
-  @include generate-padding("-right", $xs, $sm, $md, $lg, $mobile);
-  @include generate-padding("-bottom", $xs, $sm, $md, $lg, $mobile);
-  @include generate-padding("-left", $xs, $sm, $md, $lg, $mobile);
+@mixin generate-paddings($sizes: $default-paddings-sizes, $sides: $default-paddings-sides, $breakpoints: $grid-breakpoints) {
+	@each $key, $value in $sizes {
+		//We generate without sides
+		@include css-generator('padding', padding, ($key: $value), $breakpoints);
+		//We generate for each sides
+		@if $sides {
+			@each $side in $sides {
+				@include css-generator(inspect('padding-' + $side), padding-#{$side}, ($key: $value), $breakpoints);
+			}
+		}
+	}
 }
