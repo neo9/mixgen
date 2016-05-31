@@ -6,13 +6,14 @@
 
 	//if we have only one element the argument will be a map
 	@if (type_of($map) == 'map') {
-		$className: $className#{map-keys($map)}#{$separator};
+		$className: unquote("#{$className}#{nth(map-keys($map), 1)}#{$separator}");
 	}
+
 
 	@if (type_of($map) == 'list') {
 		@each $key, $value in $map {
 			@if (type_of($key) == 'map') {
-				$className: $className#{map-keys($key)}#{$separator};
+				$className: unquote("#{$className}#{map-keys($key)}#{$separator}");
 			}
 			$i: $i + 1;
 		}

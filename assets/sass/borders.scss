@@ -7,7 +7,7 @@
 		@include css-generator('border', border, (join(join(($key: $value), $type), $color, comma)), $breakpoints);
 		//We generate for each sides
 		@each $side in top, right, bottom, left {
-			@include css-generator(inspect('border-' + $side), border-#{$side}, (join(join(($key: $value), $type), $color, comma)), $breakpoints);
+			@include css-generator(unquote('border-' + $side), border-#{$side}, (join(join(($key: $value), $type), $color, comma)), $breakpoints);
 		}
 	}
 }

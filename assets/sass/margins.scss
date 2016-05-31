@@ -16,7 +16,7 @@ $default-margins-sizes: ('xs': $margin-xs-size, 'sm': $margin-sm-size, 'md': $ma
 		//We generate for each sides
 		@if $sides {
 			@each $side in $sides {
-				@include css-generator(inspect('margin-' + $side), margin-#{$side}, ($key: $value), $breakpoints);
+				@include css-generator(unquote('margin-' + $side), margin-#{$side}, ($key: $value), $breakpoints);
 			}
 		}
 	}

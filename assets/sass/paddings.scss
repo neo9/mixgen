@@ -15,7 +15,7 @@ $default-paddings-sides: top, right, bottom, left;
 		//We generate for each sides
 		@if $sides {
 			@each $side in $sides {
-				@include css-generator(inspect('padding-' + $side), padding-#{$side}, ($key: $value), $breakpoints);
+				@include css-generator(unquote('padding-' + $side), padding-#{$side}, ($key: $value), $breakpoints);
 			}
 		}
 	}
