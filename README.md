@@ -1,17 +1,16 @@
-Mixin Styles
-=============================
+# Mixgen
 
-**Mixin Styles** is a library that will help you to simplify your css.
+**Mixgen** is a library that will help you to simplify your css.
 
 The idea of this library is to generate classes that will be directly used in your HTML, you will not have to create weird class name because you need to add a specific css property.
 
-### Current Version 0.1.1
+### Current Version 1.0.8
 
 # Getting stated
 Optionally: to install with bower, use:
 
 ```
-bower install --save css-generator
+bower install --save mixgen
 ```
 
 # Add Mixin Styles
