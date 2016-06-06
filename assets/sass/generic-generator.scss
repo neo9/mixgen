@@ -1,83 +1,82 @@
 @import "breakpoints-utils";
 
 @function generateClassName($map, $separator: '-') {
-  $className: '';
-  $i: 0;
+	$className: '';
+	$i: 0;
 
-  //if we have only one element the argument will be a map
-  @if (type_of($map) == 'map') {
-    $className: unquote("#{$className}#{nth(map-keys($map), 1)}#{$separator}");
-  }
+	//if we have only one element the argument will be a map
+	@if (type_of($map) == 'map') {
+		$className: unquote("#{$className}#{nth(map-keys($map), 1)}#{$separator}");
+	}
 
 
-  @if (type_of($map) == 'list') {
-    @each $key, $value in $map {
-      @if (type_of($key) == 'map') {
-        $className: unquote("#{$className}#{map-keys($key)}#{$separator}");
-      }
-      $i: $i + 1;
-    }
-  }
+	@if (type_of($map) == 'list') {
+		@each $key, $value in $map {
+			@if (type_of($key) == 'map') {
+				$className: unquote("#{$className}#{map-keys($key)}#{$separator}");
+			}
+			$i: $i + 1;
+		}
+	}
 
-  @return str-slice(inspect($className), 1, str-length($className) - 1);
+	@return str-slice(inspect($className), 1, str-length($className) - 1);
 }
 
 @function generateMapValue($map) {
-  $values: ();
+	$values: ();
 
-  @each $key, $value in $map {
-    @if (length($values) == 0) {
-      $values: $value;
-    } @else {
-      $values: join($values, $value, space);
-    }
-  }
+	@each $key, $value in $map {
+		@if (length($values) == 0) {
+			$values: $value;
+		} @else {
+			$values: join($values, $value, space);
+		}
+	}
 
-  @return $values;
+	@return $values;
 }
 
 @function generateValueName($map) {
-  $values: ();
+	$values: ();
 
-  //if we have only one element the argument will be a map
-  @if (type_of($map) == 'map') {
-    $values: generateMapValue($map);
-  }
+	//if we have only one element the argument will be a map
+	@if (type_of($map) == 'map') {
+		$values: generateMapValue($map);
+	}
 
-  @if (type_of($map) == 'list') {
-    @each $key, $value in $map {
-      @debug $key;
-      @if (type_of($key) == 'map') {
-        @if (length($values) == 0) {
-          $values: generateMapValue($key);
-        } @else {
-          $values: join($values, generateMapValue($key), space);
-        }
-      } @else if ($key != '') {
-        @if (length($value) == 0) {
-          $values: $key;
-        } @else {
-          $values: join($values, $key, space);
-        }
-      }
-    }
-  }
+	@if (type_of($map) == 'list') {
+		@each $key, $value in $map {
+			@if (type_of($key) == 'map') {
+				@if (length($values) == 0) {
+					$values: generateMapValue($key);
+				} @else {
+					$values: join($values, generateMapValue($key), space);
+				}
+			} @else if ($key != '') {
+				@if (length($value) == 0) {
+					$values: $key;
+				} @else {
+					$values: join($values, $key, space);
+				}
+			}
+		}
+	}
 
-  @return $values;
+	@return $values;
 }
 
 @mixin css-generator($className, $cssProperty, $values, $breakpoints) {
-  @if $breakpoints {
-    @each $breakpoint in map-keys($breakpoints) {
-      @include media-breakpoint-up($breakpoint) {
-        .#{$className}-#{generateClassName($values)}-#{$breakpoint} {
-          #{$cssProperty}: inspect(generateValueName($values)) !important;
-        }
-      }
-    }
-  } @else {
-    .#{$className}-#{generateClassName($values)} {
-      #{$cssProperty}: inspect(generateValueName($values)) !important;
-    }
-  }
+	@if $breakpoints {
+		@each $breakpoint in map-keys($breakpoints) {
+			@include media-breakpoint-up($breakpoint) {
+				.#{$className}-#{generateClassName($values)}-#{$breakpoint} {
+					#{$cssProperty}: inspect(generateValueName($values)) !important;
+				}
+			}
+		}
+	} @else {
+		.#{$className}-#{generateClassName($values)} {
+			#{$cssProperty}: inspect(generateValueName($values)) !important;
+		}
+	}
 }
