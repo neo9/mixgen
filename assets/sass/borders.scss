@@ -11,3 +11,20 @@
 		}
 	}
 }
+
+@mixin generate-borders-color(
+	$color,
+	$color-name,
+	$values: ('xs': $border-xs-size, 'sm': $border-sm-size, 'md': $border-md-size, 'lg': $border-lg-size),
+	$type: solid,
+	$breakpoints: $grid-breakpoints
+) {
+	@each $key, $value in $values {
+		//We generate without sides
+		@include css-generator('border-'+$color-name, border, (join(join(($key: $value), $type), $color, comma)), $breakpoints);
+		//We generate for each sides
+		@each $side in top, right, bottom, left {
+			@include css-generator(unquote('border-'+ $color-name + '-' + $side), border-#{$side}, (join(join(($key: $value), $type), $color, comma)), $breakpoints);
+		}
+	}
+}
