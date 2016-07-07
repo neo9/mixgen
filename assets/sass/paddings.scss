@@ -12,12 +12,17 @@ $default-paddings-sides: top, right, bottom, left;
 @mixin generate-paddings($sizes: $default-paddings-sizes, $sides: $default-paddings-sides, $breakpoints: $grid-breakpoints) {
 	@each $breakpointKey, $breakpointValue in $breakpoints {
 		@each $key, $value in $sizes {
+			$breakpointMap: null;
+			@if ($breakpoints) {
+				$breakpointMap: ($breakpointKey: $breakpointValue);
+			}
+
 			//We generate without sides
-			@include css-generator('padding', padding, ($key: $value), ($breakpointKey: $breakpointValue));
+			@include css-generator('padding', padding, ($key: $value), $breakpointMap);
 			//We generate for each sides
 			@if $sides {
 				@each $side in $sides {
-					@include css-generator(unquote('padding-' + $side), padding-#{$side}, ($key: $value), ($breakpointKey: $breakpointValue));
+					@include css-generator(unquote('padding-' + $side), padding-#{$side}, ($key: $value), $breakpointMap);
 				}
 			}
 		}
