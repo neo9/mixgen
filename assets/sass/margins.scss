@@ -8,13 +8,15 @@ $default-margins-sizes: ('xs': $margin-xs-size, 'sm': $margin-sm-size, 'md': $ma
 //ex: generate-margins($breakpoints: null); if you don't need breakpoint
 
 @mixin generate-margins($sizes: $default-margins-sizes, $sides: $default-margins-sides, $breakpoints: $grid-breakpoints) {
-	@each $key, $value in $sizes {
-		//We generate without sides
-		@include css-generator('margin', margin, ($key: $value), $breakpoints);
-		//We generate for each sides
-		@if $sides {
-			@each $side in $sides {
-				@include css-generator(unquote('margin-' + $side), margin-#{$side}, ($key: $value), $breakpoints);
+	@each $breakpointKey, $breakpointValue in $breakpoints {
+		@each $key, $value in $sizes {
+			//We generate without sides
+			@include css-generator('margin', margin, ($key: $value), ($breakpointKey: $breakpointValue));
+			//We generate for each sides
+			@if $sides {
+				@each $side in $sides {
+					@include css-generator(unquote('margin-' + $side), margin-#{$side}, ($key: $value), ($breakpointKey: $breakpointValue));
+				}
 			}
 		}
 	}

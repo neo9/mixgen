@@ -8,14 +8,17 @@ $default-paddings-sides: top, right, bottom, left;
 //ex: generate-paddings(); for default paddings ($padding-xs-size, $padding-sm-size, $padding-md-size, $padding-lg-size)
 //ex: generate-paddings($breakpoints: null); if you don't need breakpoint
 
+
 @mixin generate-paddings($sizes: $default-paddings-sizes, $sides: $default-paddings-sides, $breakpoints: $grid-breakpoints) {
-	@each $key, $value in $sizes {
-		//We generate without sides
-		@include css-generator('padding', padding, ($key: $value), $breakpoints);
-		//We generate for each sides
-		@if $sides {
-			@each $side in $sides {
-				@include css-generator(unquote('padding-' + $side), padding-#{$side}, ($key: $value), $breakpoints);
+	@each $breakpointKey, $breakpointValue in $breakpoints {
+		@each $key, $value in $sizes {
+			//We generate without sides
+			@include css-generator('padding', padding, ($key: $value), ($breakpointKey: $breakpointValue));
+			//We generate for each sides
+			@if $sides {
+				@each $side in $sides {
+					@include css-generator(unquote('padding-' + $side), padding-#{$side}, ($key: $value), ($breakpointKey: $breakpointValue));
+				}
 			}
 		}
 	}
