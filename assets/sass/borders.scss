@@ -1,30 +1,21 @@
 @import "generic-generator";
 
 //Mixin to generate borders
-@mixin generate-borders($color, $values: ('xs': $border-xs-size, 'sm': $border-sm-size, 'md': $border-md-size, 'lg': $border-lg-size), $type: solid, $breakpoints: $grid-breakpoints) {
+@mixin generate-borders($colors, $values: ('xs': $border-xs-size, 'sm': $border-sm-size, 'md': $border-md-size, 'lg': $border-lg-size), $type: solid, $breakpoints: $grid-breakpoints) {
 	@each $key, $value in $values {
-		//We generate without sides
-		@include css-generator('border', border, (join(join(($key: $value), $type), $color, comma)), $breakpoints);
-		//We generate for each sides
-		@each $side in top, right, bottom, left {
-			@include css-generator(unquote('border-' + $side), border-#{$side}, (join(join(($key: $value), $type), $color, comma)), $breakpoints);
+		@each $colorKey, $colorValue in $colors {
+			//We generate without sides
+			@include css-generator('border', border, (join(join(($key: $value), $type), ($colorKey: $colorValue), comma)), $breakpoints);
+			//We generate for each sides
+			@each $side in top, right, bottom, left {
+				@include css-generator(unquote('border-' + $side), border-#{$side}, (join(join(($key: $value), $type), ($colorKey: $colorValue), comma)), $breakpoints);
+			}
 		}
 	}
-}
 
-@mixin generate-borders-color(
-	$color,
-	$color-name,
-	$values: ('xs': $border-xs-size, 'sm': $border-sm-size, 'md': $border-md-size, 'lg': $border-lg-size),
-	$type: solid,
-	$breakpoints: $grid-breakpoints
-) {
-	@each $key, $value in $values {
-		//We generate without sides
-		@include css-generator('border-'+$color-name, border, (join(join(($key: $value), $type), $color, comma)), $breakpoints);
-		//We generate for each sides
-		@each $side in top, right, bottom, left {
-			@include css-generator(unquote('border-'+ $color-name + '-' + $side), border-#{$side}, (join(join(($key: $value), $type), $color, comma)), $breakpoints);
-		}
+	@include css-generator('border', border, ('none': 0), $breakpoints);
+
+	@each $side in top, right, bottom, left {
+		@include css-generator(unquote('border-' + $side), border-#{$side}, ('none': 0), $breakpoints);
 	}
 }

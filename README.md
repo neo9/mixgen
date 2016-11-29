@@ -94,10 +94,10 @@ All mixin using the breakpoints to disable it you have to set the $breakpoints v
 
 | Arguments    | Type         | Required                                           | Description                                                                                 |
 |--------------|--------------|----------------------------------------------------|---------------------------------------------------------------------------------------------|
-| $color       | Map          | true                                               | The color you want to apply to the border (Ex: ('red': red))                                |
+| $colors      | Map          | true                                               | The color you want to apply to the border (Ex: ('red': #ffffff, 'blue': #ffffff))           |
 | $values      | Map          | optional (default values used from variables.scss) | The differents values to apply to this border (Ex: ('xs': 1px, 'sm': 2px))                  |
 | $type        | Css property | optional (default value is solid)                  | The type of the border (Ex: solid, dotted ...)                                              |
-| $breakpoints | Map          | optional (default values used from varaibles.scss) | The breakpoints values (Ex: ('xs': 0, 'sm': 544px, 'md': 768px, 'lg': 992px, 'xl': 1200px)) |
+| $breakpoints | Map          | optional (default values used from variables.scss) | The breakpoints values (Ex: ('xs': 0, 'sm': 544px, 'md': 768px, 'lg': 992px, 'xl': 1200px)) |
 
 ## Colors (will generate the background-color and text-color class)
 
