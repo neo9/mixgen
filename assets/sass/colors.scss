@@ -1,7 +1,9 @@
 @import "generic-generator";
 
 //Mixin to generate defaults color font and background color
-@mixin generate-color($color, $breakpoints: $grid-breakpoints) {
-	@include css-generator('text', color, $color, $breakpoints);
-	@include css-generator('background', background-color, $color, $breakpoints);
+@mixin generate-colors($colors, $breakpoints: $grid-breakpoints) {
+	@each $colorKey, $colorValue in $colors {
+		@include css-generator('text', color, ($colorKey: $colorValue), $breakpoints);
+		@include css-generator('background', background-color, ($colorKey: $colorValue), $breakpoints);
+	}
 }

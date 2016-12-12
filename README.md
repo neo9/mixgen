@@ -4,13 +4,14 @@
 
 The idea of this library is to generate classes that will be directly used in your HTML, you will not have to create weird class name because you need to add a specific css property.
 
-### Current Version 1.1.6
+### Current Version 1.1.8
 
 # Getting stated
 Optionally: to install with bower, use:
 
 ```
-bower install --save mixgen
+bower install mixgen --save
+npm install mixgen --save
 ```
 
 # Add Mixin Styles
@@ -101,11 +102,10 @@ All mixin using the breakpoints to disable it you have to set the $breakpoints v
 
 ## Colors (will generate the background-color and text-color class)
 
-| Arguments    | Type | Required                                           | Description                                                                                 |
-|--------------|------|----------------------------------------------------|---------------------------------------------------------------------------------------------|
-| $color       | Map  | true                                               | The color you want to apply to the border (Ex: ('red': red))                                |
-| $breakpoints | Map  | optional (default values used from varaibles.scss) | The breakpoints values (Ex: ('xs': 0, 'sm': 544px, 'md': 768px, 'lg': 992px, 'xl': 1200px)) |
-
+| Arguments    | Type        | Required                                           | Description                                                                                 |
+|--------------|-------------|----------------------------------------------------|---------------------------------------------------------------------------------------------|
+| $colors      | List or Map | true                                               | The color you want to apply to the border (Ex: ('red': red, 'white': white))                |
+| $breakpoints | Map         | optional (default values used from varaibles.scss) | The breakpoints values (Ex: ('xs': 0, 'sm': 544px, 'md': 768px, 'lg': 992px, 'xl': 1200px)) |
 
 ## Float (will generate the pull-left and pull-right)
 
