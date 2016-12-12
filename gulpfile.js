@@ -3,7 +3,7 @@ var del = require('del');
 var less = require('gulp-less');
 var sass = require('gulp-sass');
 
-require('gulp-release-tasks')(gulp);
+require('gulp-release-tag')(gulp);
 
 var dist = 'dist';
 var assets = 'assets';

@@ -1,6 +1,6 @@
 {
   "name": "mixgen",
-  "version": "1.1.8",
+  "version": "1.2.0",
   "description": "",
   "main": "gulpfile.js",
   "scripts": {},
@@ -14,7 +14,7 @@
     "del": "^2.0.2",
     "gulp": "^3.9.0",
     "gulp-less": "^3.0.3",
-    "gulp-sass": "^2.0.3",
-    "gulp-release-tasks": "0.0.3"
+    "gulp-release-tag": "0.0.1",
+    "gulp-sass": "^2.0.3"
   }
 }
