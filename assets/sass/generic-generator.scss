@@ -9,12 +9,14 @@
 		$className: unquote("#{$className}#{nth(map-keys($map), 1)}#{$separator}");
 	}
 
-
 	@if (type_of($map) == 'list') {
 		@each $key, $value in $map {
 			@if (type_of($key) == 'map') {
 				$className: unquote("#{$className}#{map-keys($key)}#{$separator}");
+			} @else if($value != null) {
+				$className: unquote("#{$className}#{$key}#{$separator}");
 			}
+
 			$i: $i + 1;
 		}
 	}
@@ -53,10 +55,10 @@
 					$values: join($values, generateMapValue($key), space);
 				}
 			} @else if ($key != '') {
-				@if (length($value) == 0) {
-					$values: $key;
-				} @else {
+				@if ($value == null) {
 					$values: join($values, $key, space);
+				} @else {
+					$values: join($values, $value, space);
 				}
 			}
 		}
