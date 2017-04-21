@@ -9,9 +9,3 @@ $default-texts-sizes: ('xs': $text-xs-size, 'sm': $text-sm-size, 'md': $text-md-
 		@include css-generator('text', font-size, ($key: $value), $breakpoints);
 	}
 }
-
-.text-bold { font-weight: bold !important; }
-
-.text-underline { text-decoration: underline !important; }
-
-.text-strikethrough { text-decoration: line-through !important; }
