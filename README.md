@@ -1,4 +1,6 @@
-# Mixgen
+# No longer actively maintained
+
+## Mixgen
 
 **Mixgen** is a library that will help you to simplify your css.
 
